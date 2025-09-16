@@ -1,0 +1,139 @@
+mysql> show databases
+    -> show databases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'show databases' at line 2
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.01 sec)
+
+mysql> create database BDAula01;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| bdaula01           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use bdaula01;
+Database changed
+mysql> CREATE TABLE pessoa(
+    -> id int AUTO_INCREMENT PRIMARY KEY,
+    -> nome varchar(50) NOT NULL,
+    -> sexo varchar(50) NOT NULL,
+    -> idioma varchar(10) NOT NULL
+    -> );
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> show tables
+    ->
+    -> show tables;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'show tables' at line 3
+mysql> show tables;
++--------------------+
+| Tables_in_bdaula01 |
++--------------------+
+| pessoa             |
++--------------------+
+1 row in set (0.01 sec)
+
+mysql> INSERT INTO pessoa (nome, sexo, idioma)
+    -> VALUES ("Ricardo", "M", "Portugues");
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from pessoa;
++----+---------+------+-----------+
+| id | nome    | sexo | idioma    |
++----+---------+------+-----------+
+|  1 | Ricardo | M    | Portugues |
++----+---------+------+-----------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO pessoa (nome, sexo, idioma)
+    -> VALUES
+    -> ("Gerald", "M", "Ingles");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO pessoa (nome, sexo, idioma)
+    -> VALUES
+    -> ("Wiliam", "M", "Ingles"),
+    -> ("Umberto", "M", "Espanhol"),
+    -> ("jostein", "M", "Alemao"),
+    -> ("Stephan", "M", "Holandes");
+Query OK, 4 rows affected (0.02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from pessoa;
++----+---------+------+-----------+
+| id | nome    | sexo | idioma    |
++----+---------+------+-----------+
+|  1 | Ricardo | M    | Portugues |
+|  2 | Gerald  | M    | Ingles    |
+|  3 | Wiliam  | M    | Ingles    |
+|  4 | Umberto | M    | Espanhol  |
+|  5 | jostein | M    | Alemao    |
+|  6 | Stephan | M    | Holandes  |
++----+---------+------+-----------+
+
+CREATE TABLE Alunos(
+     id int AUTO_INCREMENT PRIMARY KEY,
+     nome varchar(50) NOT NULL,
+     idade int NOT NULL,
+     curso varchar(50) NOT NULL
+     );
+
+mysql> INSERT INTO Alunos (nome, idade, curso)
+     VALUES
+     ("Joao", "20", "Matematica"),
+     ("Maria", "22", "Historia"),
+     ("Pedro", "21", "Ciência da Computacao"),
+     ("Ana", "19", "Biologia"),
+     ("Carlos", 23, "Economia");
+
+CREATE TABLE Professores(
+     id int AUTO_INCREMENT PRIMARY KEY,
+     nome varchar(50) NOT NULL,
+     idade int NOT NULL,
+     disciplina varchar(50) NOT NULL
+     );	
+
+INSERT INTO Professores (nome, idade, disciplina)
+     VALUES
+     ("Zamberlan", "50", "Estrutura de Dados"),
+     ("Ana Paula", "49", "Sistemas Operacionais"),
+     ("Mirkos", "47", "IA e Nanociencias");
+
+CREATE TABLE Matriculas(
+     id int AUTO_INCREMENT PRIMARY KEY,
+     id_aluno INT,
+     id_professor int,
+     data_matricula DATE,
+     FOREIGN KEY (id_aluno) REFERENCES alunos (id),
+     FOREIGN KEY (id_professor) REFERENCES professores (id)
+     );	
+
+INSERT INTO Matriculas (id_aluno, id_professor, data_matricula)
+     VALUES
+     (1, 1, '2023-01-15'),
+     (2, 2, '2023-02-20'),
+     (3, 3, '2023-03-10'),
+     (4, 1, '2023-04-05'),
+     (5, 2, '2023-05-12');
+
+mysql> select nome, curso FROM alunos;
+
+mysql> SELECT nome, disciplina FROM professores;
+
+
