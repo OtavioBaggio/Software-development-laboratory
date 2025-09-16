@@ -1,0 +1,4 @@
+0;Honda;LeroLero;2025;MJNK123;Branco
+0;Peugeot;fudido;2005;HJ78KL;vermelho
+0;Toyota;Setios;2003;UIO785LK;Azul
+0;Ford;Ka;2018;J8KK4L;Branco
